@@ -41,27 +41,17 @@ public class KafkaUtilsTest {
         }
     }
 
-    @Slf4j
-    private static class MyProcessor implements Predicate<KVItem<String, String>> {
-
-        @Override
-        public boolean test(KVItem kvItem) {
-            log.info("K: {}, V: {}", kvItem.getKey(), kvItem.getValue());
-            return false;
-        }
-    }
-
     @Test
     public void testStream() {
         String server = "127.0.0.1:9092";
         String topic = "topic001";
         String appId = "myApp001";
-        try (KafkaStreams streams = KafkaUtils.createStreams(server, appId, topic, new MyProcessor());Producer<String, String> producer = KafkaUtils.createProducer(server);) {
+        try (KafkaStreams streams = KafkaUtils.createStreams(server, appId, topic, new MyProcessor()); Producer<String, String> producer = KafkaUtils.createProducer(server);) {
             streams.start();
 
-            for(int i=0;i<10;i++){
+            for (int i = 0; i < 10; i++) {
                 String key = UUID.randomUUID().toString();
-                key="key001";
+                key = "key001";
                 String value = UUID.randomUUID().toString();
                 ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topic, key, value);
                 Future<RecordMetadata> future = producer.send(producerRecord);
@@ -73,6 +63,16 @@ public class KafkaUtilsTest {
             Thread.sleep(5000);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Slf4j
+    private static class MyProcessor implements Predicate<KVItem<String, String>> {
+
+        @Override
+        public boolean test(KVItem kvItem) {
+            log.info("K: {}, V: {}", kvItem.getKey(), kvItem.getValue());
+            return false;
         }
     }
 

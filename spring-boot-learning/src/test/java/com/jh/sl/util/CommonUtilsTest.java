@@ -8,7 +8,7 @@ public class CommonUtilsTest {
 
     @Test
     public void testEncodeBase64() {
-        String token = CommonUtils.load("/src/test/resources/token.data");
+        String token = CommonUtils.load("/token.data");
         String[] ss = token.split("\\.");
         log.info(CommonUtils.decodeBase64(ss[0]));
         log.info(CommonUtils.decodeBase64(ss[1]));
