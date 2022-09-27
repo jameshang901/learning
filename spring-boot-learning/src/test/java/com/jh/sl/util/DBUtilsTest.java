@@ -71,7 +71,7 @@ public class DBUtilsTest {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            log.info("Completed: {} rows, batch size {}, {}ms", rows,batch, System.currentTimeMillis() - start);
+            log.info("Completed: {} rows, batch size {}, {}ms", rows, batch, System.currentTimeMillis() - start);
         }
     }
 
