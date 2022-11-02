@@ -7,8 +7,8 @@
     <!--ConsoleAppender 用于在屏幕上输出日志-->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <!--            <pattern>%d [%thread] %-5level %logger{36} [%file : %line] - %msg%n</pattern>-->
-            <pattern>%msg%n</pattern>
+                        <pattern>%d [%thread] %-5level %logger{36} [%file:%line] %msg%n</pattern>
+<!--            <pattern>%msg%n</pattern>-->
         </encoder>
     </appender>
 
@@ -139,6 +139,8 @@
         <appender-ref ref="file_info"/>
         <appender-ref ref="file_debug"/>
     </root>
+
+    <logger name="org.springframework" level="info"/>
 
     <logger name="org.apache.kafka" level="off"/>
 

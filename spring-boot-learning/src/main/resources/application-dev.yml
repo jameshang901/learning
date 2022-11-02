@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    url:jdbc:j2: ~/work/temp/h2
+    username: dev001
+    password: pass001
+  jpa:
+    database: h2
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
